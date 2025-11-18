@@ -132,7 +132,9 @@ class MainViewModel @Inject constructor(
 
     private fun gameOver() {
         gameJob?.cancel()
-        _gameState.update { it.copy(status = GameStatus.GAME_OVER) }
+        _gameState.update {
+            it.copy(status = GameStatus.GAME_OVER)
+        }
 
         viewModelScope.launch {
             saveScoreToDatabase(_gameState.value.score)
